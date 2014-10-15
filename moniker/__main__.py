@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import json
+import yaml
 import os
 import sys
 
@@ -38,6 +39,12 @@ def main():
     parser.add_argument(
         '-r', '--recursive', action='store_true',
         help='Recursive renaming',
+    )
+
+    # Not Yet Implemented
+    parser.add_argument(
+        '-i', '--interactive', action='store_true',
+        help='Go into interactive mode',
     )
     parser.add_argument(
         'directory',

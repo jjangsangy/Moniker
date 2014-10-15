@@ -1,7 +1,7 @@
 from __future__ import print_function, unicode_literals
 
-import fnmatch
 import os
+import re
 
 from collections import defaultdict
 
@@ -11,8 +11,7 @@ __all__ = ['tree_walk']
 Tree = lambda: defaultdict(Tree)
 
 def add(t, key, replace):
-    t = t[key[0]]
-    t[key[-1]] = replace
+    t[key[0]] = [i for i in key[1]]
 
 
 def tree_walk(top, pattern, replace):
@@ -21,12 +20,15 @@ def tree_walk(top, pattern, replace):
     unix glob pattern.
     """
     root  = Tree()
+
+    pat = re.compile(re.escape(pattern))
     for path, dirname, filelist in os.walk(top):
-        if not any(fnmatch.fnmatch(match, pattern) for match in filelist):
+
+        if not any([files for files in filelist if files.endswith(pattern)]):
             continue
 
-        for files in fnmatch.filter(filelist, pattern):
-            base = os.path.relpath(path, start=top)
-            node = [base, files]
-            add(root, node, replace)
+        base = os.path.relpath(path, start=top)
+        node = [base, [{files: pat.sub(replace, files)} for files in filelist if files.endswith(pattern)]]
+        add(root, node, replace)
+
     return root
