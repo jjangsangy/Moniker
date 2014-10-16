@@ -1,6 +1,10 @@
 # Moniker
 A simple batch file rename tool.
 
+[![Build Status](https://travis-ci.org/jjangsangy/Moniker.svg?branch=master)](https://travis-ci.org/jjangsangy/Moniker)
+[!py-translate](https://badge.fury.io/py/py-translate.svg target: http://badge.fury.io/py/py-translate)
+    
+    
 # Installation
 
 Moniker is a simple Python utility for renaming and manipulating the filesystem based
