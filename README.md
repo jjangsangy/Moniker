@@ -1,7 +1,7 @@
 # Moniker
 A simple batch file rename tool.
 
-[![Build Status](https://travis-ci.org/jjangsangy/Moniker.svg?branch=master)](https://travis-ci.org/jjangsangy/Moniker) [![PyPI version](https://badge.fury.io/py/moniker.svg)](http://badge.fury.io/py/moniker) [![Documentation Status](https://readthedocs.org/projects/moniker/badge/?version=latest)](https://readthedocs.org/projects/moniker/?badge=latest) [![Coverage Status](https://coveralls.io/repos/jjangsangy/Moniker/badge.png)](https://coveralls.io/r/jjangsangy/Moniker)
+[![Build Status](https://travis-ci.org/jjangsangy/Moniker.svg?branch=master)](https://travis-ci.org/jjangsangy/Moniker) [![PyPI version](https://badge.fury.io/py/moniker.svg)](http://badge.fury.io/py/moniker) [![Documentation Status](https://readthedocs.org/projects/moniker/badge/?version=latest)](https://readthedocs.org/projects/moniker/?badge=latest) [![Coverage Status](https://img.shields.io/coveralls/jjangsangy/Moniker.svg)](https://coveralls.io/r/jjangsangy/Moniker)
 
 # Installation
 
