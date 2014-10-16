@@ -1,9 +1,8 @@
 # Moniker
 A simple batch file rename tool.
 
-[![Build Status](https://travis-ci.org/jjangsangy/Moniker.svg?branch=master)](https://travis-ci.org/jjangsangy/Moniker)
-[!py-translate](https://badge.fury.io/py/py-translate.svg target: http://badge.fury.io/py/py-translate)
-    
+![![Build Status](https://travis-ci.org/jjangsangy/Moniker.svg?branch=master)](https://travis-ci.org/jjangsangy/Moniker)
+![target](https://badge.fury.io/py/py-translate.svg?branch=master)
     
 # Installation
 
