@@ -1,13 +1,21 @@
 language: python
 python:
-    - "3.4"
-    - "3.3"
-    - "2.7"
-    - "2.6"
-    - "pypy"
-    - "pypy3"
+- '3.4'
+- '3.3'
+- '2.7'
+- '2.6'
+- pypy
+- pypy3
 install:
-    - pip install -r requirements.txt
-    - python setup.py install
+- pip install -r requirements.txt
+- python setup.py install
 script:
-    - nosetests -v
+- nosetests -v
+deploy:
+  provider: pypi
+  user: jjangsangy
+  password:
+    secure: deNvq+KpRMYIjiEnG7wyOgUZl7x1k3GRkW3r30bZ9PaaYqouOzhYJ2YQFVdeKNxPeQQdaNYao7AOhFnvp/TA6loSJle7DTaCLK9bg2TfuD5VUyA86CEZsHiSC10893/udm0erI/bw4MceVZICbS4TVMzEt2hHnHUY25eww7RYzI=
+  on:
+    tags: true
+    repo: jjangsangy/Moniker
