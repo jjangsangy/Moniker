@@ -1,4 +1,5 @@
 # Moniker
+A simple batch file rename tool.
 
 # Installation
 
