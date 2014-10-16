@@ -17,6 +17,7 @@ try:
     from pygments.formatters import Terminal256Formatter
     from pygments.styles import STYLE_MAP as pygments_builtins
 except:
+    # No color for you
     pass
 
 def main():
@@ -74,14 +75,10 @@ def main():
 
     filetree = tree_walk(args.directory, args.pattern, args.replace)
     jsontree = json.dumps(filetree, indent=2, sort_keys=True, separators=(', ', ': '))
-    try:
-        jsontree = highlight(jsontree, JsonLexer(), Terminal256Formatter(style='autumn'))
-    except:
-        pass
+    try: jsontree = highlight(jsontree, JsonLexer(), Terminal256Formatter(style='autumn'))
+    except: pass
+
     print(jsontree)
-
-
-
 
 if __name__ == '__main__':
     sys.exit(main())
