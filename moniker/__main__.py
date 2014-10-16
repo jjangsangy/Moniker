@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 import json
-import yaml
 import os
 import sys
 
@@ -11,6 +10,14 @@ from argparse import ArgumentParser
 from .__version__ import __version__, __build__
 
 from .moniker import tree_walk
+
+try:
+    from pygments import highlight
+    from pygments.lexers.web import JsonLexer
+    from pygments.formatters import Terminal256Formatter
+    from pygments.styles import STYLE_MAP as pygments_builtins
+except:
+    pass
 
 def main():
     '''Main Entry point'''
@@ -66,7 +73,15 @@ def main():
         raise IOError
 
     filetree = tree_walk(args.directory, args.pattern, args.replace)
-    print(json.dumps(filetree, indent=4, sort_keys=True))
+    jsontree = json.dumps(filetree, indent=2, sort_keys=True, separators=(', ', ': '))
+    try:
+        jsontree = highlight(jsontree, JsonLexer(), Terminal256Formatter(style='autumn'))
+    except:
+        pass
+    print(jsontree)
+
+
+
 
 if __name__ == '__main__':
     sys.exit(main())
