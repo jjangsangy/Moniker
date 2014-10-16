@@ -1,3 +1,5 @@
+# Moniker
+
 # Installation
 
 Moniker is a simple Python utility for renaming and manipulating the filesystem based
