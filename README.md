@@ -18,7 +18,8 @@ $ pip install moniker
 # Usage
 
 ```sh
-$ moniker --replace . .py .python
+# Default recursive search at current directory
+$ moniker --replace .py .py.bak
 ```
 
 ```javascript
@@ -56,5 +57,26 @@ $ moniker --replace . .py .python
         }
     ]
 }
+```
+
+## Get Help Instructions
+```sh
+$ moniker -h
+
+usage: moniker [-h] [-v] [--depth depth] [--replace pat rep]
+               [directory]
+
+Simple batch file renaming tool.
+
+positional arguments:
+  directory             target directory root
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+
+  --depth depth         Recursion depth, default is max
+  --replace (pat, rep)  File extension patterns
+
 ```
 
