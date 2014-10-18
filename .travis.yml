@@ -15,11 +15,6 @@ install:
 
 script:
   - nosetests -v
-  - coverage run
-
-after_success:
-  - coveralls
-
 
 deploy:
   provider: pypi
