@@ -24,39 +24,43 @@ $ moniker --replace .py .py.bak
 
 ```javascript
 {
-    ".": [
-        {
-            "setup.py": "setup.python"
-        }
-    ], 
-    "docs": [
-        {
-            "conf.py": "conf.python"
-        }
-    ], 
-    "moniker": [
-        {
-            "__init__.py": "__init__.python"
-        }, 
-        {
-            "__main__.py": "__main__.python"
-        }, 
-        {
-            "__version__.py": "__version__.python"
-        }, 
-        {
-            "moniker.py": "moniker.python"
-        }
-    ], 
-    "moniker/tests": [
-        {
-            "__init__.py": "__init__.python"
-        }, 
-        {
-            "test_main.py": "test_main.python"
-        }
-    ]
+  ".": [
+    {
+      "setup.py": "setup.py.bak"
+    }
+  ], 
+  "docs": [
+    {
+      "conf.py": "conf.py.bak"
+    }
+  ], 
+  "moniker": [
+    {
+      "__init__.py": "__init__.py.bak"
+    }, 
+    {
+      "__main__.py": "__main__.py.bak"
+    }, 
+    {
+      "__version__.py": "__version__.py.bak"
+    }, 
+    {
+      "moniker.py": "moniker.py.bak"
+    }, 
+    {
+      "structs.py": "structs.py.bak"
+    }
+  ], 
+  "tests": [
+    {
+      "__init__.py": "__init__.py.bak"
+    }, 
+    {
+      "test_main.py": "test_main.py.bak"
+    }
+  ]
 }
+
 ```
 
 ## Get Help Instructions
