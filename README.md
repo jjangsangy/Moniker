@@ -18,7 +18,7 @@ $ pip install moniker
 # Usage
 
 ```sh
-$ moniker . .py .python
+$ moniker --replace . .py .python
 ```
 
 ```javascript
