@@ -1,34 +1,53 @@
-from __future__ import print_function, unicode_literals
-
 import os
 import re
 
-from collections import defaultdict
+from os.path import basename, relpath
+
+from .structs import Tree, Pattern
 
 __all__ = ['tree_walk']
 
-# Recursive Tree Definition
-Tree = lambda: defaultdict(Tree)
-
-def add(t, key, replace):
+def add(t, key):
     t[key[0]] = [i for i in key[1]]
 
 
-def tree_walk(top, pattern, replace):
+def tree_walk(top, replace=('', '')):
     """
     Walk file system heiarchy for the base directory generating files matching
     unix glob pattern.
+
+    :param top:     The top of the filesystem heiarchy and starting node.
+    :type top:      String
+    :param replace: Files to be matched and replaced.
+    :type replace:  Tuple
+
+    :returns type: <type defaultdict>
+    :returns: Tree
+
     """
     root  = Tree()
+    find  = Pattern(*replace)
 
-    pat = re.compile(re.escape(pattern))
-    for path, dirname, filelist in os.walk(top):
+    pat = re.compile(re.escape(find.lookup))
+    for path, _, filelist in os.walk(top):
 
-        if not any([files for files in filelist if files.endswith(pattern)]):
+        # TODO: Replace binning engine
+        if not any(
+            [files for files in filelist if files.endswith(find.lookup)]
+        ):
             continue
 
-        base = os.path.relpath(path, start=top)
-        node = [base, [{files: pat.sub(replace, files)} for files in filelist if files.endswith(pattern)]]
-        add(root, node, replace)
+        # TODO: Replace Matching engine
+        base = relpath(path, start=top)
+        node = [
+            basename(base), [
+            {
+                files: pat.sub(find.replace, files)
+            }
+                for files in filelist if files.endswith(find.lookup)
+        ]]
+
+        # Add Node
+        add(root, node)
 
     return root

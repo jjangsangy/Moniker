@@ -30,3 +30,6 @@ clean:
 	rm -rf build
 	rm -rf *egg-info
 	rm -rf dist
+
+rst:
+	pandoc --from=markdown_github --to=rst README.md -o README.rst

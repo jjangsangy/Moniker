@@ -3,13 +3,14 @@ Moniker
 
 A simple batch file rename tool.
 
-||Build Status|| |target|
+|Build Status| |PyPI version| |Documentation Status| |Coverage Status|
 
 Installation
 ============
 
-Moniker is a simple Python utility for renaming and manipulating the
-filesystem based off similar project and work from `Irving
+| Moniker is a simple Python utility for renaming and manipulating the
+filesystem based
+| off similar project and work from `Irving
 Ruan <https://github.com/irvingruan/Moniker.git>`__.
 
 Currently work in progress
@@ -71,6 +72,11 @@ Usage
         ]
     }
 
-.. ||Build Status|| image:: https://travis-ci.org/jjangsangy/Moniker
 .. |Build Status| image:: https://travis-ci.org/jjangsangy/Moniker.svg?branch=master
-.. |target| image:: https://badge.fury.io/py/py-translate.svg?branch=master
+   :target: https://travis-ci.org/jjangsangy/Moniker
+.. |PyPI version| image:: https://badge.fury.io/py/moniker.svg
+   :target: http://badge.fury.io/py/moniker
+.. |Documentation Status| image:: https://readthedocs.org/projects/moniker/badge/?version=latest
+   :target: https://readthedocs.org/projects/moniker/?badge=latest
+.. |Coverage Status| image:: https://img.shields.io/coveralls/jjangsangy/Moniker.svg
+   :target: https://coveralls.io/r/jjangsangy/Moniker
