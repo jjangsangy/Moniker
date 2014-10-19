@@ -40,7 +40,7 @@ def tree_walk(top, replace=('', '')):
         # TODO: Replace Matching engine
         base = relpath(path, start=top)
         node = [
-            basename(base), [
+            base, [
             {
                 files: pat.sub(find.replace, files)
             }
