@@ -15,12 +15,19 @@ try:
     from pygments import highlight
     from pygments.lexers.web import JsonLexer
     from pygments.formatters import Terminal256Formatter
-except:
-    # No color for you
+except: # No color for you
     pass
 
-def main():
-    '''Main Entry point'''
+def command():
+    """
+    Argument parsing from the user.
+    Passeds a fully parsed command line arguments.
+
+    :TODO:
+        Considering parsing at multiple stages or create a tiered system
+        with multiple passes.
+
+    """
     version = ' '.join([__version__, __build__])
     parser = ArgumentParser(
         prog='moniker',
@@ -35,9 +42,8 @@ def main():
         '--depth',
         type=int,
         metavar='depth',
-        help='Recursive renaming',
+        help='Tiers of file heiarcy explored',
     )
-
     parser.add_argument(
         '--replace',
         nargs=2,
@@ -50,9 +56,19 @@ def main():
         default='.',
         help='target directory root',
     )
+    return parser
+
+
+def main():
+    """
+    Main Entry point for Moniker
+    """
+
+    # CommandLine Args
+    parse = command()
 
     # Parse/Validate User Input
-    args = parser.parse_args()
+    args = parse.parse_args()
     if not os.path.isdir(args.directory):
         raise IOError
 
@@ -64,11 +80,12 @@ def main():
 
     # Pipe vs Redirection
     if sys.stdout.isatty():
-        try:
-            jsontree = highlight(jsontree, JsonLexer(), Terminal256Formatter(style='autumn'))
+        try: jsontree = highlight(
+                jsontree,
+                JsonLexer(),
+                Terminal256Formatter(style='autumn'))
         except:
             pass
-
     print(jsontree)
 
 if __name__ == '__main__':

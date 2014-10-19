@@ -1,14 +1,18 @@
 import os
 import re
 
-from os.path import relpath
+from os.path import relpath, abspath
 
-from .structs import Tree, Pattern
+from .structs import Tree, Pattern, FileSchema
 
 __all__ = ['tree_walk']
 
 def add(t, key):
-    t[key[0]] = [i for i in key[1]]
+    t[key.base] = {
+        'oldname': key.name,
+        'size': key.size,
+        'moniker': key.moniker,
+    }
 
 def tree_walk(top, replace=('', '')):
     """
@@ -30,21 +34,18 @@ def tree_walk(top, replace=('', '')):
     pat   = re.compile(r'(\w*|\w*\.|\w*-)({p})(\w*|\w*\.|\w*-)'.format(
                     p=esc))
 
+    c_match = lambda f: (match for match in f if pat.search(match))
+
     for path, _, filelist in os.walk(top):
-        if not any(i for i in filelist if pat.search(i)):
+        if not any(c_match(filelist)):
             continue
 
         base = relpath(path, start=top)
-        print(base)
-        node = [
-            base, [
-            {
-                files: re.sub(
-                    pat.search(files).group(2), find.replace, files
-            )}
-                for files in filelist if pat.search(files)
-        ]]
-        # Add Node
-        add(root, node)
-
+        for node in filelist:
+            if not pat.search(node):
+                continue
+            moniker  = re.sub(pat.search(node).group(2), find.replace, node)
+            size     = os.path.getsize(abspath(os.path.join(path, node)))
+            filenode = FileSchema(node, moniker, base, size)
+            add(root, filenode)
     return root
