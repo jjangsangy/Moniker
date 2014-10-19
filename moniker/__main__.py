@@ -48,7 +48,6 @@ def main():
     parser.add_argument(
         'directory',
         default='.',
-        nargs='?',
         help='target directory root',
     )
 
