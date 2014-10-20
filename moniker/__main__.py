@@ -41,6 +41,7 @@ def command():
     parser.add_argument(
         '--depth',
         type=int,
+        default=0,
         metavar='depth',
         help='Tiers of file heiarcy explored',
     )
@@ -73,7 +74,7 @@ def main():
         raise IOError
 
     # Abstract File Tree
-    filetree = tree_walk(args.directory, args.replace)
+    filetree = tree_walk(args.directory, args.replace, args.depth)
     jsontree = json.dumps(
         filetree, indent=2, sort_keys=True, separators=(', ', ': ')
     )

@@ -12,9 +12,10 @@ def add(t, key):
         'oldname': key.name,
         'size': key.size,
         'moniker': key.moniker,
+        'depth': key.depth,
     }
 
-def tree_walk(top, replace=('', '')):
+def tree_walk(top, replace=('', ''), maxdepth=0):
     """
     Walk file system heiarchy for the base directory generating files matching
     unix glob pattern.
@@ -33,19 +34,21 @@ def tree_walk(top, replace=('', '')):
     esc   = re.escape(find.lookup)
     pat   = re.compile(r'(\w*|\w*\.|\w*-)({p})(\w*|\w*\.|\w*-)'.format(
                     p=esc))
-
     c_match = lambda f: (match for match in f if pat.search(match))
 
-    for path, _, filelist in os.walk(top):
+    for path, dirpath, filelist in os.walk(top):
         if not any(c_match(filelist)):
             continue
-
         base = relpath(path, start=top)
+        levels = base.split(os.sep)
+        depth = len(levels) - levels.count('.')
+        if depth >= maxdepth+1:
+            continue
         for node in filelist:
             if not pat.search(node):
                 continue
             moniker  = re.sub(pat.search(node).group(2), find.replace, node)
             size     = os.path.getsize(abspath(os.path.join(path, node)))
-            filenode = FileSchema(node, moniker, base, size)
+            filenode = FileSchema(node, moniker, base, size, depth)
             add(root, filenode)
     return root
