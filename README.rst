@@ -20,8 +20,7 @@ Install from PyPi
 
 .. code:: sh
 
-    $ pip install -r requirements.txt
-    $ pip install moniker
+    $ pip install -r requirements.txt && pip install moniker
 
 From Source
 -----------
@@ -129,4 +128,4 @@ Get Help Instructions
    :target: https://readthedocs.org/projects/moniker/?badge=latest
 .. |Coverage Status| image:: https://img.shields.io/coveralls/jjangsangy/Moniker.svg
    :target: https://coveralls.io/r/jjangsangy/Moniker
-.. |Moniker| image:: img/moniker.png
+.. |Moniker| image:: https://raw.githubusercontent.com/jjangsangy/Moniker/master/img/moniker.png
