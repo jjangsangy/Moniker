@@ -1,19 +1,14 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 
-from os.path import relpath, abspath
+from os.path import relpath, abspath, getsize
+from collections import OrderedDict
 
-from .structs import Tree, Pattern, FileSchema
+from .structs import Tree, Pattern
 
 __all__ = ['tree_walk']
-
-def add(t, key):
-    t[key.base] = {
-        'oldname': key.name,
-        'size': key.size,
-        'moniker': key.moniker,
-        'depth': key.depth,
-    }
 
 def tree_walk(top, replace=('', ''), maxdepth=0):
     """
@@ -29,26 +24,39 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
     :returns: Tree
 
     """
-    root  = Tree()
-    find  = Pattern(*replace)
-    esc   = re.escape(find.lookup)
-    pat   = re.compile(r'(\w*|\w*\.|\w*-)({p})(\w*|\w*\.|\w*-)'.format(
-                    p=esc))
+    root = Tree()
+    find = Pattern(*replace)
+    pat = re.compile(
+        r'(\w*|\w*\.|\w*-)({phrase})(\w*|\w*\.|\w*-)'.format(
+            phrase=re.escape(find.lookup))
+    )
     c_match = lambda f: (match for match in f if pat.search(match))
 
+    # Tree Level
     for path, dirpath, filelist in os.walk(top):
+
         if not any(c_match(filelist)):
             continue
-        base = relpath(path, start=top)
+
+        nodes  = []
+        base   = relpath(path, start=top)
         levels = base.split(os.sep)
-        depth = len(levels) - levels.count('.')
-        if depth >= maxdepth+1:
+        depth  = len(levels) - levels.count('.')
+
+        if depth > maxdepth:
             continue
-        for node in filelist:
-            if not pat.search(node):
+
+        # Node Level
+        for name in filelist:
+            match = pat.search(name)
+            if not match:
                 continue
-            moniker  = re.sub(pat.search(node).group(2), find.replace, node)
-            size     = os.path.getsize(abspath(os.path.join(path, node)))
-            filenode = FileSchema(node, moniker, base, size, depth)
-            add(root, filenode)
+            node = OrderedDict({
+                   'name': name,
+                'moniker': re.sub(match.group(2), find.replace, name),
+                   'size': getsize(abspath(os.path.join(path, name))),
+                  'depth': depth,
+            })
+            nodes.append(node)
+        root[base] = nodes
     return root

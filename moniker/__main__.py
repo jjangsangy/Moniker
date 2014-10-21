@@ -18,7 +18,8 @@ try:
 except: # No color for you
     pass
 
-def command():
+
+def command_line():
     """
     Argument parsing from the user.
     Passeds a fully parsed command line arguments.
@@ -29,7 +30,7 @@ def command():
 
     """
     version = ' '.join([__version__, __build__])
-    parser = ArgumentParser(
+    parser  = ArgumentParser(
         prog='moniker',
         description='Simple batch file renaming tool.',
     )
@@ -37,7 +38,6 @@ def command():
         '-v', '--version', action='version',
         version="%s v%s" % (basename(sys.argv[0]), version)
     )
-    # Not Yet Implemented
     parser.add_argument(
         '--depth',
         type=int,
@@ -65,18 +65,19 @@ def main():
     Main Entry point for Moniker
     """
 
-    # CommandLine Args
-    parse = command()
-
     # Parse/Validate User Input
-    args = parse.parse_args()
+    parse = command_line()
+    args  = parse.parse_args()
     if not os.path.isdir(args.directory):
         raise IOError
 
     # Abstract File Tree
     filetree = tree_walk(args.directory, args.replace, args.depth)
     jsontree = json.dumps(
-        filetree, indent=2, sort_keys=True, separators=(', ', ': ')
+        filetree,
+        indent=4,
+        sort_keys=True,
+        separators=(', ', ': '),
     )
 
     # Pipe vs Redirection
@@ -87,6 +88,7 @@ def main():
                 Terminal256Formatter(style='autumn'))
         except:
             pass
+
     print(jsontree)
 
 if __name__ == '__main__':

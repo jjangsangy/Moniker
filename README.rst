@@ -5,6 +5,8 @@ A simple batch file rename tool.
 
 |Build Status| |PyPI version| |Documentation Status| |Coverage Status|
 
+|Moniker|
+
 Installation
 ============
 
@@ -13,64 +15,83 @@ filesystem based
 | off similar project and work from `Irving
 Ruan <https://github.com/irvingruan/Moniker.git>`__.
 
-Currently work in progress
---------------------------
+Install from PyPi
+-----------------
 
-Clone the repository
+.. code:: sh
 
-.. code:: bash
-
-        $ git clone https://github.com/jjangsangy/moniker.git
-
-Install
-
-.. code:: bash
-
-        $ python setup.py install
+    $ pip install -r requirements.txt
+    $ pip install moniker
 
 Usage
 =====
 
 .. code:: sh
 
-        $ moniker . .py .python
+    # Default recursive search at current directory
+    $ moniker --replace .py .py.bak
 
 .. code:: javascript
 
     {
-        ".": [
-            {
-                "setup.py": "setup.python"
-            }
-        ], 
-        "docs": [
-            {
-                "conf.py": "conf.python"
-            }
-        ], 
-        "moniker": [
-            {
-                "__init__.py": "__init__.python"
-            }, 
-            {
-                "__main__.py": "__main__.python"
-            }, 
-            {
-                "__version__.py": "__version__.python"
-            }, 
-            {
-                "moniker.py": "moniker.python"
-            }
-        ], 
-        "moniker/tests": [
-            {
-                "__init__.py": "__init__.python"
-            }, 
-            {
-                "test_main.py": "test_main.python"
-            }
-        ]
+      ".": [
+        {
+          "setup.py": "setup.py.bak"
+        }
+      ], 
+      "docs": [
+        {
+          "conf.py": "conf.py.bak"
+        }
+      ], 
+      "moniker": [
+        {
+          "__init__.py": "__init__.py.bak"
+        }, 
+        {
+          "__main__.py": "__main__.py.bak"
+        }, 
+        {
+          "__version__.py": "__version__.py.bak"
+        }, 
+        {
+          "moniker.py": "moniker.py.bak"
+        }, 
+        {
+          "structs.py": "structs.py.bak"
+        }
+      ], 
+      "tests": [
+        {
+          "__init__.py": "__init__.py.bak"
+        }, 
+        {
+          "test_main.py": "test_main.py.bak"
+        }
+      ]
     }
+
+Get Help Instructions
+---------------------
+
+.. code:: sh
+
+    $ moniker -h
+
+    usage: moniker [-h] [-v] [--depth depth] [--replace pat rep]
+                   [directory]
+
+    Simple batch file renaming tool.
+
+    positional arguments:
+      directory             target directory root
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -v, --version         show program's version number and exit
+
+      --depth depth         Recursion depth, default is max
+      --replace (pat, rep)  File extension patterns
 
 .. |Build Status| image:: https://travis-ci.org/jjangsangy/Moniker.svg?branch=master
    :target: https://travis-ci.org/jjangsangy/Moniker
@@ -80,3 +101,4 @@ Usage
    :target: https://readthedocs.org/projects/moniker/?badge=latest
 .. |Coverage Status| image:: https://img.shields.io/coveralls/jjangsangy/Moniker.svg
    :target: https://coveralls.io/r/jjangsangy/Moniker
+.. |Moniker| image:: https://raw.githubusercontent.com/jjangsangy/Moniker/master/img/moniker.png

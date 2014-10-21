@@ -1,17 +1,20 @@
-.. moniker documentation master file, created by
-   sphinx-quickstart on Mon Oct 13 22:42:12 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _index:
+Moniker
+=======
+**A simple batch file rename tool**
 
-Welcome to moniker's documentation!
-==================================
+:Author:  Sang Han 2014
+:License: `Apache Software License v2 <http://opensource.org/licenses/Apache-2.0>`_
+:Version: v\ |version|
 
-Contents:
+
+Quickstart Guide
+----------------
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-
+    README.rst
 
 Indices and tables
 ==================
@@ -19,4 +22,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
