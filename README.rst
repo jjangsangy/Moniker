@@ -53,9 +53,6 @@ Thats it!
 Usage
 =====
 
-Get Usage
----------
-
 .. code:: sh
 
     $ moniker -h
