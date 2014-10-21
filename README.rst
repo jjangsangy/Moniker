@@ -23,6 +23,34 @@ Install from PyPi
     $ pip install -r requirements.txt
     $ pip install moniker
 
+From Source
+-----------
+
+To get the latest version to try out, clone the github repo.
+
+.. code:: sh
+
+    $ git clone https://github.com/jjangsangy/moniker.git
+
+Setup dependencies with ``requirements.txt`` (Optional: Adds Color
+Output)
+
+.. code:: sh
+
+    $ pip install -r requirements.txt
+
+Use ``setup.py`` to install
+
+.. code:: sh
+
+    # For Python 2.x Install
+    $ python setup.py install
+
+    # For Python 3.x
+    $ python3 setup.py install
+
+Thats it!
+
 Usage
 =====
 
@@ -101,4 +129,4 @@ Get Help Instructions
    :target: https://readthedocs.org/projects/moniker/?badge=latest
 .. |Coverage Status| image:: https://img.shields.io/coveralls/jjangsangy/Moniker.svg
    :target: https://coveralls.io/r/jjangsangy/Moniker
-.. |Moniker| image:: https://raw.githubusercontent.com/jjangsangy/Moniker/master/img/moniker.png
+.. |Moniker| image:: img/moniker.png
