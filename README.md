@@ -40,7 +40,6 @@ Thats it!
 
 # Usage
 
-## Get Usage
 ```sh
 $ moniker -h
 

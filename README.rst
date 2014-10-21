@@ -53,53 +53,8 @@ Thats it!
 Usage
 =====
 
-.. code:: sh
-
-    # Default recursive search at current directory
-    $ moniker --replace .py .py.bak
-
-.. code:: javascript
-
-    {
-      ".": [
-        {
-          "setup.py": "setup.py.bak"
-        }
-      ], 
-      "docs": [
-        {
-          "conf.py": "conf.py.bak"
-        }
-      ], 
-      "moniker": [
-        {
-          "__init__.py": "__init__.py.bak"
-        }, 
-        {
-          "__main__.py": "__main__.py.bak"
-        }, 
-        {
-          "__version__.py": "__version__.py.bak"
-        }, 
-        {
-          "moniker.py": "moniker.py.bak"
-        }, 
-        {
-          "structs.py": "structs.py.bak"
-        }
-      ], 
-      "tests": [
-        {
-          "__init__.py": "__init__.py.bak"
-        }, 
-        {
-          "test_main.py": "test_main.py.bak"
-        }
-      ]
-    }
-
-Get Help Instructions
----------------------
+Get Usage
+---------
 
 .. code:: sh
 
@@ -119,6 +74,80 @@ Get Help Instructions
 
       --depth depth         Recursion depth, default is max
       --replace (pat, rep)  File extension patterns
+
+Specify Depth and Replacement Search/Replace
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: sh
+
+    $ moniker --depth 2 --replace .py .py.bak .
+
+.. code:: javascript
+
+    {
+        ".": [
+            {
+                "depth": 0, 
+                "moniker": "setup.pyo", 
+                "name": "setup.py", 
+                "size": 1609
+            }
+        ], 
+        "docs": [
+            {
+                "depth": 1, 
+                "moniker": "conf.pyo", 
+                "name": "conf.py", 
+                "size": 10809
+            }
+        ], 
+        "moniker": [
+            {
+                "depth": 1, 
+                "moniker": "__init__.pyo", 
+                "name": "__init__.py", 
+                "size": 212
+            }, 
+            {
+                "depth": 1, 
+                "moniker": "__main__.pyo", 
+                "name": "__main__.py", 
+                "size": 2168
+            }, 
+            {
+                "depth": 1, 
+                "moniker": "__version__.pyo", 
+                "name": "__version__.py", 
+                "size": 41
+            }, 
+            {
+                "depth": 1, 
+                "moniker": "moniker.pyo", 
+                "name": "moniker.py", 
+                "size": 1664
+            }, 
+            {
+                "depth": 1, 
+                "moniker": "structs.pyo", 
+                "name": "structs.py", 
+                "size": 170
+            }
+        ], 
+        "moniker/tests": [
+            {
+                "depth": 2, 
+                "moniker": "__init__.pyo", 
+                "name": "__init__.py", 
+                "size": 0
+            }, 
+            {
+                "depth": 2, 
+                "moniker": "test_main.pyo", 
+                "name": "test_main.py", 
+                "size": 339
+            }
+        ]
+    }
 
 .. |Build Status| image:: https://travis-ci.org/jjangsangy/Moniker.svg?branch=master
    :target: https://travis-ci.org/jjangsangy/Moniker
