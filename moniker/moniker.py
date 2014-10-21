@@ -58,5 +58,5 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
                   'depth': depth,
             })
             nodes.append(node)
-        root[base] = nodes
+        root[base] = [node for node in nodes]
     return root
