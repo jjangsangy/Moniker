@@ -77,7 +77,7 @@ Specify Depth and Replacement Search/Replace
 
 .. code:: sh
 
-    $ moniker --depth 2 --replace .py .py.bak .
+    $ moniker --depth 2 --replace .py .pyo .
 
 .. code:: javascript
 

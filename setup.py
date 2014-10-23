@@ -20,7 +20,7 @@ long_description = '\n\n'.join(
     ])
 
 setup(
-    name='moniker',
+    name='Moniker',
     description=description,
     long_description=long_description,
     author='Sang Han',

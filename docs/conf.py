@@ -21,6 +21,7 @@ import os
 sys.path.insert(0, os.path.abspath('..'))
 
 import sphinx_bootstrap_theme
+import moniker
 from moniker import __version__, __build__, __title__
 
 # -- General configuration ------------------------------------------------
@@ -33,7 +34,10 @@ from moniker import __version__, __build__, __title__
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
     'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
 ]
 
@@ -120,7 +124,7 @@ html_theme_options = {
     'navbar_pagenav': True,
     'navbar_fixed_top': True,
     'source_link_position': "nav",
-    'bootswatch_theme': "paper",
+    'bootswatch_theme': "sandstone",
     'bootstrap_version': "3",
 }
 

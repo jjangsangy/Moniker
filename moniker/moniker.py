@@ -2,9 +2,9 @@
 
 import os
 import re
+import stat
 
-from os.path import relpath, abspath, getsize
-from collections import OrderedDict
+from os.path import relpath, abspath
 
 from .structs import Tree, Pattern
 
@@ -26,37 +26,52 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
     """
     root = Tree()
     find = Pattern(*replace)
-    pat = re.compile(
+    pat  = re.compile(
         r'(\w*|\w*\.|\w*-)({phrase})(\w*|\w*\.|\w*-)'.format(
             phrase=re.escape(find.lookup))
     )
-    c_match = lambda f: (match for match in f if pat.search(match))
 
     # Tree Level
     for path, dirpath, filelist in os.walk(top):
 
-        if not any(c_match(filelist)):
-            continue
-
-        nodes  = []
-        base   = relpath(path, start=top)
-        levels = base.split(os.sep)
-        depth  = len(levels) - levels.count('.')
+        matches = []
+        base    = relpath(path, start=top)
+        levels  = base.split(os.sep)
+        depth   = len(levels) - levels.count('.')
 
         if depth > maxdepth:
+            break
+        if not any(pat.search(i) for i in filelist):
             continue
 
         # Node Level
         for name in filelist:
+
+            # Filter
             match = pat.search(name)
             if not match:
                 continue
-            node = OrderedDict({
-                   'name': name,
-                'moniker': re.sub(match.group(2), find.replace, name),
-                   'size': getsize(abspath(os.path.join(path, name))),
-                  'depth': depth,
-            })
-            nodes.append(node)
-        root[base] = [node for node in nodes]
+
+            # Construct DataStructure
+            filepath = os.path.join(path, name)
+            info = os.stat(filepath)
+            node = {
+                'depth': depth,
+                'name': {
+                    'oldname': name,
+                    'moniker': re.sub(match.group(2), find.replace, name),
+                },
+                'stats': {
+                    'size' : info.st_size,
+                    'mode' : stat.S_IFMT(info.st_mode),
+                    'wt++' : os.access(filepath, os.W_OK),
+                    '#uid' : info.st_uid,
+                    '#gid' : info.st_gid,
+                }
+            }
+
+            matches.append(node)
+
+        root[base] = matches
+
     return root

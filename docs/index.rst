@@ -16,6 +16,25 @@ Quickstart Guide
 
     README.rst
 
+API Documentation
+-----------------
+
+.. toctree::
+    :maxdepth: 2
+    :glob:
+
+    api/*
+
+Notes
+------
+.. toctree::
+   :maxdepth:: 2
+
+   HISTORY.rst
+   TODO.rst
+
+
+
 Indices and tables
 ==================
 

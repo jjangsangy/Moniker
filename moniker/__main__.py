@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
 
+__all__ = ['command_line']
+
 import json
 import os
 import sys
@@ -28,6 +30,15 @@ def command_line():
         Considering parsing at multiple stages or create a tiered system
         with multiple passes.
 
+    :returns type: <ArgumentParser>
+    :returns:
+        Keyword:
+            --version
+            --help
+            --depth int
+            --replace (pat, rep)
+        Positional:
+            directory
     """
     version = ' '.join([__version__, __build__])
     parser  = ArgumentParser(
@@ -65,7 +76,7 @@ def main():
     Main Entry point for Moniker
     """
 
-    # Parse/Validate User Input
+    # Command Line Interface
     parse = command_line()
     args  = parse.parse_args()
     if not os.path.isdir(args.directory):

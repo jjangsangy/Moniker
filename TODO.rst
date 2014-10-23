@@ -1,6 +1,7 @@
-.. todo_
+.. _todo:
 
-:TODO: Sang Han
+Todo List
+----------
 
 1. Data Structures and Code Organization
 2. Unit Testing
