@@ -4,7 +4,7 @@ import os
 import re
 import stat
 
-from os.path import relpath, abspath
+from os.path import relpath
 
 from .structs import Tree, Pattern
 
@@ -63,15 +63,14 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
                 },
                 'stats': {
                     'size' : info.st_size,
+                    '_uid' : info.st_uid,
+                    '_gid' : info.st_gid,
                     'mode' : stat.S_IFMT(info.st_mode),
-                    'wt++' : os.access(filepath, os.W_OK),
-                    '#uid' : info.st_uid,
-                    '#gid' : info.st_gid,
+                    'write' : os.access(filepath, os.W_OK),
                 }
             }
 
             matches.append(node)
-
         root[base] = matches
 
     return root

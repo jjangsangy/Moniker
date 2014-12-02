@@ -27,13 +27,13 @@
             "mode": {
                 "type": "integer"
             },
-            "wt++": {
+            "write": {
                 "type": "boolean"
             },
-            "#uid": {
+            "_uid": {
                 "type": "integer"
             },
-            "#gid": {
+            "_gid": {
                 "type": "integer"
             }
         },
