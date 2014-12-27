@@ -52,20 +52,20 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
             if not match:
                 continue
 
-            # Construct DataStructure
+            # Construct Data Structure
             filepath = os.path.join(path, name)
-            info = os.stat(filepath)
-            node = {
+            info     = os.stat(filepath)
+            node     = {
                 'depth': depth,
                 'name': {
                     'oldname': name,
                     'moniker': re.sub(match.group(2), find.replace, name),
                 },
                 'stats': {
-                    'size' : info.st_size,
-                    '_uid' : info.st_uid,
-                    '_gid' : info.st_gid,
-                    'mode' : stat.S_IFMT(info.st_mode),
+                    'size'  : info.st_size,
+                    '_uid'  : info.st_uid,
+                    '_gid'  : info.st_gid,
+                    'mode'  : stat.S_IFMT(info.st_mode),
                     'write' : os.access(filepath, os.W_OK),
                 }
             }
