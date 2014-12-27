@@ -71,6 +71,7 @@ def tree_walk(top, replace=('', ''), maxdepth=0):
             }
 
             matches.append(node)
+
         root[base] = matches
 
     return root
