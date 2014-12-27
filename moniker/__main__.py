@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
 
-__all__ = []
-
 import json
 import os
 import sys
@@ -20,6 +18,7 @@ try:
 except: # No color for you
     pass
 
+__all__ = []
 
 def command_line():
     """
