@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function, unicode_literals
 
-__all__ = ['command_line']
+__all__ = []
 
 import json
 import os
