@@ -1,5 +1,4 @@
 from .__version__ import __version__, __build__
-from .__main__ import *
 
 from .moniker import *
 
