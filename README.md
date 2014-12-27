@@ -53,7 +53,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
+  -v, --version         show programs version number and exit
 
   --depth depth         Recursion depth, default is max
   --replace (pat, rep)  File extension patterns
