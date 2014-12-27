@@ -43,8 +43,7 @@ Thats it!
 ```sh
 $ moniker -h
 
-usage: moniker [-h] [-v] [--depth depth] [--replace pat rep]
-               [directory]
+usage: moniker [-h] [-v] [--depth depth] [--replace pat rep] [directory]
 
 Simple batch file renaming tool.
 
