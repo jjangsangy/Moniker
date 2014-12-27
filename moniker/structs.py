@@ -2,7 +2,7 @@
 Custom data structures.
 """
 
-from collections import defaultdict, namedtuple
+import collections
 
-Tree = lambda: defaultdict(Tree)
-Pattern = namedtuple('Pattern', ['lookup', 'replace'])
+Tree    = lambda: collections.defaultdict(Tree)
+Pattern = collections.namedtuple('Pattern', ['lookup', 'replace'])
